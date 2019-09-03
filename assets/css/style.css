@@ -1,0 +1,138 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+ /* BreakPoints */
+ /* 960 */
+
+:root{
+    /* colores */
+    --blue:#006eff;
+    --border: #ccc;
+    --text-color:#53575A;
+    --oscuro:#282D31;
+    /* Height header */
+    --height-header:4rem;
+
+    /* Width */
+    --max-width:1224px;
+
+    /* z-index */
+    --z-back :-10;
+    --z-normal:1;
+    --z-tooltip:10;
+    --z-fixed:100;
+    --z-modal:1000;
+
+    
+}
+
+
+body{
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.border{
+    border: 2px solid red;
+}
+
+/* Contenedor para dispositivos l */
+.l-container{
+    max-width: var(--max-width);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+}
+/* ****************************************** */
+
+/* Style Header, menu */
+.header__main{
+    height: var(--height-header);
+    border-bottom:  1px solid var(--border);
+}
+
+.header__main__block{
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header__img {
+    height: 3rem;
+}
+.header__img img{
+    height: 100%;
+}
+
+.header__menu {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.header__menu__link {
+    color: var(--border);
+    margin-left: 1rem;
+}
+
+/* Movil */
+.header__nav {
+    position: fixed;
+    height: calc(100vh - var(--height-header) );
+    width: 80vw;
+    background-color: var(--oscuro);
+    top: var(--height-header);
+    right: -100vw;
+    padding-top: 1rem;
+    transition: right .5s ;
+    z-index: var(--z-fixed);
+}
+
+.header__nav.show {
+    right: 0;
+}
+
+.header__menu__toggle{
+   width: 2.2rem;
+   height: 1.6rem;
+   background: linear-gradient( var(--oscuro) 20%, transparent 20%, transparent 40%, var(--oscuro) 40%, var(--oscuro) 60%, transparent 60%, transparent 80%, var(--oscuro) 80%, var(--oscuro) 100%);
+   cursor: pointer;
+}
+
+.header__menu__item{
+    padding: 1rem;
+
+}
+
+@media only screen and (min-width: 960px){
+    .header__nav {
+        position: static;
+        background-color: transparent;
+        padding-top: 0;
+        height: auto;
+        width: auto;
+    }
+    .header__menu__toggle{
+        display: none;
+    }
+    .header__menu {
+        display: flex;
+    }
+    .header__menu__link {
+        color: var(--oscuro);
+        margin-left: 1rem;
+    }
+
+}
+/* *************************************************************** */
