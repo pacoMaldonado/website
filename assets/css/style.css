@@ -1,38 +1,52 @@
-*,*::before,*::after{
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
- /* BreakPoints */
- /* 960 */
 
-:root{
+/* BreakPoints */
+/* 960 */
+
+:root {
     /* colores */
-    --blue:#006eff;
-    --border: #ccc;
-    --text-color:#53575A;
-    --oscuro:#282D31;
+
+    --first-color:rgb(0, 123, 223);
+    --first-color-alp:rgba(0, 123, 223, 0.7);
+
+    --second-color: rgb(0, 203, 255);
+    --third-color:rgb(255, 60, 50);
+    --accent-color:rgb(251, 168, 3);
+
+    --white-color:rgb(255, 255, 255);
+    --border-color: rgb(223, 224, 224);
+    --text-color: rgb(83, 87, 90);
+    --dark-color:rgb(20, 22, 24);
+    --dark-color-alp:rgba(20, 22, 24,.1);
+    --dark-color-alt:rgb(40, 45, 49);
+
     /* Height header */
-    --height-header:4rem;
+    --height-header: 3rem;
+
 
     /* Width */
-    --max-width:1224px;
+    --max-width: 1224px;
 
     /* z-index */
-    --z-back :-10;
-    --z-normal:1;
-    --z-tooltip:10;
-    --z-fixed:100;
-    --z-modal:1000;
-
-    
+    --z-back: -10;
+    --z-normal: 1;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
 }
 
 
-body{
+body {
     margin: 0;
     font-family: 'Lato', sans-serif;
+    text-decoration: none;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -40,12 +54,18 @@ img {
     max-width: 100%;
 }
 
-.border{
+.border {
     border: 2px solid red;
 }
 
+:focus{
+    outline: none;
+}
+
+
+
 /* Contenedor para dispositivos l */
-.l-container{
+.l-container {
     max-width: var(--max-width);
     padding-left: 1rem;
     padding-right: 1rem;
@@ -53,69 +73,195 @@ img {
     margin-right: auto;
     margin-left: auto;
 }
+
 /* ****************************************** */
 
 /* Style Header, menu */
-.header__main{
+.header__main {
     height: var(--height-header);
-    border-bottom:  1px solid var(--border);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    width: 100%;
+    background-color: var(--white-color);
 }
 
-.header__main__block{
+.header__main__block {
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
+/* Imagen del logo */
 .header__img {
-    height: 3rem;
+    height: calc(var(--height-header) - 1rem);
+
 }
-.header__img img{
+
+.header__img img {
     height: 100%;
 }
 
+/* Menu movil background*/
+
+/* .header__menu__toggle{
+   width: 2.2rem;
+   height: 1.6rem;
+   background: linear-gradient( var(--dark-color) 20%, transparent 20%, transparent 40%, var(--dark-color) 40%, var(--dark-color) 60%, transparent 60%, transparent 80%, var(--dark-color) 80%, var(--oscuro) 100%);
+   cursor: pointer;
+} */
+
+
+/* Menu movil div´s and  close icon */
+.header__menu__toggle {
+    display: inline-block;
+    /* cursor: pointer; */
+}
+
+.barrra__menu__1,
+.barrra__menu__2,
+.barrra__menu__3 {
+    width: 28px;
+    height: 4px;
+    background-color: var(--dark-color);
+    margin: 4px 0;
+    transition: .3s;
+}
+
+.change .barrra__menu__1 {
+    --webkit-transform: rotate(-45deg) translate(-7px, 6px);
+    transform: rotate(-45deg) translate(-7px, 6px);
+}
+
+.change .barrra__menu__2 {
+    opacity: 0;
+}
+
+.change .barrra__menu__3 {
+    --webkit-transform: rotate(45deg) translate(-5px, -4px);
+    transform: rotate(45deg) translate(-5px, -4px);
+}
+
+/* Fin de los estilos del menu con icono de cerrar */
+
+
+/* Menu Movil */
+.header__nav.show {
+    left: 0;
+}
+.header__nav {
+    position: fixed;
+    height: calc(100vh - var(--height-header));
+    width: 80vw;
+    background-color: var(--dark-color-alt);
+    top: var(--height-header);
+    left: -100vw;
+    padding-top: 1rem;
+    transition: left .5s;
+    z-index: var(--z-fixed);
+    font-family: Lato;
+}
 .header__menu {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
     list-style: none;
 }
-
+.header__menu__item {
+    padding: 0 1rem;
+}
+.header__menu__item:hover{
+    background-color: var(--dark-color);
+}
 .header__menu__link {
-    color: var(--border);
-    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--white-color);
+    height: var(--height-header);
 }
 
-/* Movil */
-.header__nav {
-    position: fixed;
-    height: calc(100vh - var(--height-header) );
-    width: 80vw;
-    background-color: var(--oscuro);
-    top: var(--height-header);
-    right: -100vw;
-    padding-top: 1rem;
-    transition: right .5s ;
-    z-index: var(--z-fixed);
+
+
+main {
+    padding-top: var(--height-header);
 }
 
-.header__nav.show {
-    right: 0;
+.banner__main {
+    /* z-index: var(--z-back) ; */
+    background: linear-gradient(rgba(0, 123, 223, 0.7), rgba(0, 123, 223, 0.7)), url(../img/banner.jpg) center / cover;
+    /* padding: 5rem 1rem 6rem; */
+    /* height: calc( 100vh - var(--height-header) ); */
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--dark-color);
+    /* position: relative; */
 }
 
-.header__menu__toggle{
-   width: 2.2rem;
-   height: 1.6rem;
-   background: linear-gradient( var(--oscuro) 20%, transparent 20%, transparent 40%, var(--oscuro) 40%, var(--oscuro) 60%, transparent 60%, transparent 80%, var(--oscuro) 80%, var(--oscuro) 100%);
-   cursor: pointer;
-}
-
-.header__menu__item{
-    padding: 1rem;
+/* .banner__main__content{
+    position: relative;
 
 }
+.banner__main__hero__image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    object-fit: cover;
+    object-position: center;
+} */
+.banner__main__img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
 
-@media only screen and (min-width: 960px){
+.banner__main__titutlo {
+    font-family: 'Lato';
+    margin-bottom: .3rem;
+}
+
+.banner__main__subtitulo {
+    font-family: 'Raleway';
+    margin-top: 0;
+}
+
+.banner__main__social {
+    display: flex;
+    justify-content: center;
+    color: var(--dark-color-alt);
+}
+
+.banner__main__social span {
+    margin: 0 .5rem;
+    font-size: 1.5rem;
+}
+
+/* elementos span con una clase  que contenga "example" */
+.banner__main__social span:hover,
+.banner__main__social span:active {
+    color: var(--dark-color) ;
+    cursor: pointer;
+}
+
+.banner__main__social a:visited {
+    color: inherit;
+}
+
+
+@media only screen and (max-width:850px)  and (orientation : landscape ){
+    .banner__main {
+        height: 100vh;
+    }
+}
+
+
+@media only screen and (min-width: 960px) {
     .header__nav {
         position: static;
         background-color: transparent;
@@ -123,16 +269,27 @@ img {
         height: auto;
         width: auto;
     }
-    .header__menu__toggle{
+
+    .header__menu__toggle {
         display: none;
     }
+
     .header__menu {
         display: flex;
     }
+
+    .header__menu__item { 
+        cursor: default;
+    }
+    .header__menu__item:hover{
+        background-color: var(--dark-color-alp);
+        height: calc( var(--height-header) + 2px);
+    }
+
     .header__menu__link {
-        color: var(--oscuro);
-        margin-left: 1rem;
+        color: var(--dark-color);
     }
 
 }
+
 /* *************************************************************** */
